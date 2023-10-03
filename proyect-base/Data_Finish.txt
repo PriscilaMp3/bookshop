@@ -1,0 +1,487 @@
+-- database: c:\bac-kend\proyect-base\data.sqlite3
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+CREATE TABLE User_Type (
+id_User_Type INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+DESCRIPTION VARCHAR,
+STATE VARCHAR);
+
+INSERT INTO User_Type(
+DESCRIPTION, STATE) VALUES ('ADMINISTRATOR','ACTIVE'),
+('CLIENT','ACTIVE');
+
+------------------USER----------------------------------------
+CREATE TABLE USER (
+ID_USER INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+NAME VARCHAR(30),
+EMAIL VARCHAR(45),
+PASSWORD VARCHAR(8),
+STATE VARCHAR(50),
+id_User_Type INTEGER NOT NULL,
+FOREIGN KEY (id_User_Type) REFERENCES User_Type (id_User_Type));
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Kiara Carvajal','kiaralcp26@gmail.com','kiaraDy','Activo',1);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Priscilla Medina','mediporra@gmail.com','dymepo','Activo',1);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Juan Pelaes','pelaos@gmail.com','pleos','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Dylan Madrigal','dysteven2748@gmail.com','kidylo','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Juan Rodriguez','rodry9p@gmail.com','holaq','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Mario Ángulo','angucupl348@gmail.com','hamburguesa','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Jesús Rodriguez ','rodripela@gmail.com','amarillo','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Marco Pinto','malosoy@gmail.com','celeste56','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Pepito Nandayure','Nando2200@gmail.com','hola300','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Marcelo Maltés','maltesu589@gmail.com','postre500','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Jhonson Pelon','pelon17368@gmail.com','Pelo','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Kianny Porras','porrasqlo@gmail.com','plata299','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Daniel Suarez','dsuave2748@gmail.com','comida','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Dilani Pérez','dyPerezkia@gmail.com','kidyla','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Shiley Cortés','cortes7288@gmail.com','Cortepelo','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Eduard Medina','vago19@gmail.com','aburrido','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Yutxiel Carvajal','cjyutxi8@gmail.com','elci900','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Elci Garro Mata','mataelci@gmail.com','botella321','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Yariela Mata','matayari48@gmail.com','mTAIIJ','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Paco Melina','melina748@gmail.com','kpeldoo','Activo',2);
+
+INSERT INTO USER(NAME,EMAIL,PASSWORD,STATE,id_User_Type)
+VALUES ('Amanda Madrigal','teven2748@gmail.com','kidylo','Activo',2);
+
+------------------METODOS DE PAGO QUE SE UTILIZARAN---------------------------------
+
+CREATE TABLE PAYMENTH_METOD(
+ID_PAYMENTH_METOD INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+ID_USER INTEGER NOT NULL,
+DESCRIPTION VARCHAR,
+STATE VARCHAR,
+FOREIGN KEY (ID_USER) REFERENCES USER (ID_USER)
+);
+
+INSERT INTO PAYMENTH_METOD (ID_USER, Description, State)
+VALUES (1, 'Cash', 'Active'),
+(19, 'Sinpe', 'Inactivo'),
+(14, 'Bank Transfer', 'Active');
+
+
+--------------------------------------RENTA Y SUS INSERT-------------------------------------------------------------
+
+CREATE TABLE RENT (
+ID_RENT INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+DESCRIPTION VARCHAR,
+STATE VARCHAR);
+INSERT INTO RENT (DESCRIPTION, STATE)
+VALUES('1 DAY', 'ACTIVE'),
+('1 WEEK','ACTIVE'),
+('1 MONTH','ACTIVE'),
+('3 MONTHS','ACTIVE'),
+('6 MONTHS','ACTIVE');
+-----------------------------------------LIBROS Y SUS INSERT----------------------------------------------------------------
+
+CREATE TABLE BOOK (
+ISBN INTEGER NOT NULL PRIMARY KEY,
+TITLE_BOOK VARCHAR(50),
+DESCRIPTION_BOOK VARCHAR(100),
+DATE_PUBLICATION VARCHAR,
+RENTAL_AMOUNT REAL,
+STATE VARCHAR (50)
+);
+INSERT INTO Book (ISBN,TITLE_BOOK,
+description_Book,DATE_PUBLICATION,RENTAL_AMOUNT,STATE)
+VALUES
+(9788423355235,'DON QUIJOTE DE LA MANCHA','Se considera Don Quijote de la Mancha la primera novela moderna y obra cumbre ','12/03/2019',6000,'Activo'),
+(9788419030627,'TINTA, SANGRE, HERMANA, ESCRIBAINK, BLOOD, MIRROR, MAGIC','una historia de lealtad familiar y traiciones, y de la búsqueda de la magia y el poder.','12/09/2023',25000,'Activo'),
+(9788466676564,'MALDITA ROMA (SERIE JULIO CESAR 2)LA CONQUISTA DEL PODER DE JULIO CÉSAR','Ningún escritor podría imaginar una vida como la de Julio César.Sólo Santiago Posteguillo puede escribirla.','14/11/2023',45000,'Activo'),
+(9788419030443,'UNA LLAMA EN LAS CENIZAS','Una llama en las cenizas es una novela de fantasía y aventura de Sabaa Tahir','19/09/2023',43000,'Activo'),
+(9788417957254,'CANDY CANDY. LA HISTORIA DEFINITIVA','una niña que fue abandonada de niña y criada en un orfanato. ','20/05/2021',21000,'Activo'),
+(9788412687255,'VISIONES','se dirige a un festival en compañía de su hemano menor autista','28/07/2023',4000,'Activo'),
+(9781838667030,'LINDA EVANGELISTA PHOTOGRAPHED ','Este esperado libro es la crónica de la constante evolución de la visión de Evangelista.','13/09/2023',7000,'Activo'),
+(9788479538255,'DEJA DE SER TU. LA MENTE CREA LA REALIDAD','Un libro del bioquímico Joe Dispenza que desarrolla una teoría científica sobre la neuroplasticidad y la meditación para lograr cambios físicos y psíquicos','17/09/2012',9500,'Activo'),
+(9788426403278,'TAN POCA VIDA','novela que recorre más de tres décadas de amistad en la vida de cuatro hombres que crecen juntos en Manhattan','15/09/2016',6500,'Activo'),
+(9788408275787,'LA REBELION DE LOS BUENOS','cuenta la historia de un equipo peculiar y desprotegido que lucha contra el poder corrupto que solo busca el dinero','14/06/2023',5400,'Activo'),
+(9788418798894,
+'10.000 MILLAS PARA ENCONTRARTE (BALI 2)',
+'10.000 Millas Para Encontrarte es la emocionante segunda entrega de la saga Bali escrita por Mercedes Ron ',
+'28/09/2023',
+15000,
+'Activo'),
+(9788411759151,
+'CRONICAS DE VILTARION II:_ OCEANOS DE FUEGO',
+'Rumores de un combate imposible escapan del pueblo de Piru y se extienden hasta los líderes del reino de Asgun',
+'26/07/2023',
+34000,
+'Activo'),
+(9788491291916,
+'UN CUENTO PERFECTO',
+'novela asombrosa que muestra un retrato memorable del amor en la era moderna',
+'20/02/2020',
+35000,
+'Activo'),
+(
+9788491293552,
+'EL CUCO DE CRISTAL',
+' una médico residente de primer año que sufre un infarto fulminante y necesita un trasplante de corazón.',
+'01/02/2023',
+12000,
+'Activo'),
+(
+9788467062212,
+'ENCUENTRA TU PERSONA VITAMINA',
+'guía práctica para descubrir a las personas que nos aportan energía y bienestar en nuestra vida.',
+'25/08/2021',
+4600,
+'Activo'),
+(
+9788419275202,
+'HARRY POTTER Y EL PRISIONERO DE AZKABAN',
+'Harry Potter se aburre un año más en casa de sus tíos y tutores legales, Los Dursley, cuando su tía Marjorey, hace acto de presencia y pone a parir a los padres de Harry delante de él',
+'09/11/2023',
+4500,
+'Activo'),
+(
+9788413147710,
+'CULPA MIA',
+'Noah y Nick inician una relación prohibida que los hará vivir un romance intenso y peligroso',
+'11/05/2023',
+20000,
+'Activo'),
+(
+9788492678457,
+'KAMASUTRA',
+'obra a modo de compendio de la antigua ciencia del amor india llamada Kamashastra',
+'01/06/2009',
+50000,
+'Activo'),
+(
+9788418118036,
+'HABITOS ATOMICOS
+CAMBIOS PEQUEÑOS, RESULTADOS EXTRAORDINARIOS',
+'El concepto central del libro se basa en la idea de que los pequeños cambios, cuando se repiten consistentemente, pueden generar resultados extraordinarios',
+'08/09/2020',
+45000,
+'Activo'),
+(   
+9788491297246,
+'COMO (NO) ESCRIBI NUESTRA HISTORIA',
+' Elsa Benavides es una escritora de éxito que tiene una crisis creativa y una obsesión',
+'11/04/2023',
+43000,
+'Activo');
+
+
+------------------------CARRITO DE COMPRAS Y SUS INSERT----------------------------
+CREATE TABLE SHOPPING_CART(
+        ID_SHOPPING_CART INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        ID_USER INTEGER NOT NULL,
+        ID_RENT INTEGER NOT NULL,
+        PAYMENTH_METOD INTEGER NOT NULL,
+        RETURN_DATE DATE,
+        LATE_AMOUNT DATE,   
+        TRANSACTION_NUMBER INTEGER NOT NULL,
+        TOTAL_AMOUNT INTEGER NOT NULL,
+        STATE VARCHAR,
+        LOAN_DATE DATE DEFAULT CURRENT_DATE,
+        FOREIGN KEY (ID_USER ) REFERENCES USER (ID_USER),
+        FOREIGN KEY (ID_RENT) REFERENCES RENT (ID_RENT)
+);
+
+
+INSERT INTO SHOPPING_CART (ID_USER, ID_RENT, PAYMENTH_METOD, RETURN_DATE, LATE_AMOUNT, TRANSACTION_NUMBER ,TOTAL_AMOUNT, STATE)
+VALUES
+(1, 1, 1, DATE('NOW', '+1 DAY'), 0, 85461, 10000, 'BORROWED'),
+(14, 1,3, DATE('NOW', '+7 DAYS'), 0, 1, 5000, 'BORROWED'),
+(2, 1, 3, DATE('NOW', '+90 DAYS'), 0, 9642, 2500, 'BORROWED'),
+(18, 1,1, DATE('NOW', '+1 DAY'), 0, 1001, 8599, 'BORROWED');
+
+
+
+-----------------CARRITO DE VENTA DE  LIBROS Y SUS INSERT------------------------
+CREATE TABLE BOOK_SHOPPING_CART(
+ID_BOOK_SHOPPING_CART INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+ISBN INTEGER NOT NULL,
+ID_SHOPPING_CART INTEGER NOT NULL,
+
+FOREIGN KEY (ISBN) REFERENCES BOOK (ISBN)
+FOREIGN KEY (ID_SHOPPING_CART) REFERENCES SHOPPING_CART (ID_SHOPPING_CART)
+);
+
+INSERT INTO BOOK_SHOPPING_CART(ISBN,ID_SHOPPING_CART) VALUES(9781838667030,1);
+
+-------------------------------------------------------REVIEW---------------------------------------------------------------------------
+CREATE TABLE REVIEW (
+ID_REVIEW INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+ISBN INTEGER NOT NULL,
+ID_USER INTEGER NOT NULL,
+STARS INTEGER NOT NULL,
+REVIEW VARCHAR,
+FOREIGN KEY (ISBN) REFERENCES Book (ISBN),
+FOREIGN KEY (ID_USER) REFERENCES User (ID_USER) );
+INSERT INTO REVIEW (ISBN,ID_USER,STARS,REVIEW) 
+VALUES (9781838667030,1,5,'NO ME GUSTO LA TRAMA'),(9788408275787,2,5,'NO ME AGRADO EL FINAL'),(9788419030443,9,9,'MUY BUENO'),(9788419030627,10,7,'BUENO');
+-----------------------------------AUTHOR Y SUS INSERT-------------------------------------------------------------------------------------------
+
+CREATE TABLE AUTHOR(
+ID_Author INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+NAME VARCHAR(30));
+INSERT INTO AUTHOR(NAME)
+VALUES('STEVEN MEISEL'),('ROBERTO SANTIAGO'),('PABLO ALEXANDER'),('OSCAR MUÑOZ'),('MERCEDES RON'),('YUMIKO IGARASHI'),('JAMES CLEAR'),('RON MERCEDES'),('SABAÁ TAHIR'),('EMMA TORZS'),('JK. ROWLING'),('MIGUEL DE CERVANTES'),('HANYA YANGIHARA'), ('SANTIAGO POSTEGUILLO'),('MARIAN ROJAS ESTAPÉ'), ('JOE DISPENZA'), ('ELISABET BENAVENT'), ('JAVIER CASTILLO'), ('ELISABET BENAVENT'), ('VATSIAIANA');
+
+-------------------------------------------------Author book-------------------------------------------------------------------------------------
+CREATE TABLE Author_Book (
+ID_AUTHOR_BOOK INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+ID_Author INTEGER NOT NULL,
+ISBN INTEGER NOT NULL,
+FOREIGN KEY (ID_Author) REFERENCES AUTHOR (ID_Author),
+FOREIGN KEY (ISBN) REFERENCES BOOK (ISBN));
+
+INSERT INTO AUTHOR_BOOK(ID_Author,ISBN) VALUES(12,9788423355235);
+
+---------------------------GENERO------------------------------------------------------------------------------------------------------
+
+CREATE TABLE GENRE (
+ID_GENRE INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+DESCRIPTION VARCHAR,
+STATE VARCHAR);
+INSERT INTO GENRE (DESCRIPTION,STATE)
+VALUES ('Novela','Activo'),
+('Narrativa fántastica','Activo'),
+('Literatura y ficción', 'Activo'),
+(' Infantil y juvenil', 'Activo'),
+('Cómics','Activo'),
+('Suspenso y Ciencia ficción','Activo'),
+('Arte y diseño y moda','Activo'),
+('Autoayuda y espiritualidad','Activo'),
+('Ficción','Activo'),
+('Novela negra','Activo'),
+('Romance','Activo'),
+('Narrativa fantástica','Activo'),
+('Romance juvenil','Activo'),
+('Novela negra','Activo'),
+('Autoayuda y espiritualidad','Activo'),
+('Fantasía y Aventuras','Activo'),
+('Romance y Drama','Activo'),
+('Clásicos de la literatura','Activo'),
+('Autoayuda y espiritualidad','Activo'),
+('Romántica contemporánea','Activo');
+
+----------------GÉNERO DEL LIBRO Y SUS INSERT-----------------------
+
+CREATE TABLE GENRE_BOOK(
+ISBN INTEGER NOT NULL,
+ID_GENRE INTEGER NOT NULL, 
+
+FOREIGN KEY (ISBN) REFERENCES BOOK (ISBN),
+FOREIGN KEY (ID_GENRE) REFERENCES GENRE (ID_GENRE));
+
+
+INSERT INTO GENRE_BOOK(ISBN,ID_GENRE)
+VALUES
+(9788423355235,12),
+(9788419030627,10),
+(9788466676564,14),
+(9788419030443,9),
+(9788417957254,6),
+(9788412687255,4),
+(9781838667030,1),
+(9788479538255,16),
+(9788426403278,13),
+(9788408275787,2),
+(9788418798894,8),
+(9788411759151,3),
+(9788491291916,17),
+(9788491293552,18),
+(9788467062212,15),
+(9788419275202,11),
+(9788413147710,5),
+(9788492678457,20),
+(9788418118036,7),
+(9788491297246,19);
+
+---------------------------------------------------INVENTORY----------------------------------
+CREATE TABLE INVENTORY(
+ID_INVENTORY INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+ISBN INTEGER NOT NULL,
+BORROWED_BOOKS INTEGER NOT NULL,
+AVAILABLE_BOOKS INTEGER NOT NULL, 
+NUMBER_COPIES_TOTAL INTEGER NOT NULL,
+FOREIGN KEY (ISBN) REFERENCES Book (ISBN));
+
+INSERT INTO INVENTORY (ISBN, BORROWED_BOOKS, AVAILABLE_BOOKS, NUMBER_COPIES_TOTAL) VALUES
+(9781838667030,15,30,45),
+(9788408275787,10,20,30),
+(9788411759151,16,20,36),
+(9788412687255,18,20,38),
+(9788413147710,20,40,50),
+(9788417957254,12,24,36),
+(9788418118036,7,14,21),
+(9788418798894,20,30,50),
+(9788419030443,15,30,45),
+(9788419030627,10,20,30),
+(9788419275202,16,20,36),
+(9788423355235,18,20,38),
+(9788426403278,20,40,50),
+(9788466676564,12,24,36),
+(9788467062212,7,14,21),
+(9788479538255,20,30,50),
+(9788491291916,15,30,45),
+(9788491293552,10,20,30),
+(9788491297246,16,20,36),
+(9788492678457,18,20,38);
+
+CREATE TABLE RETURN_BOOKS(
+ID_RETURN_BOOKS INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+ISBN INTEGER NOT NULL,
+ID_SHOPPING_CART INTEGER NOT NULL,
+RETURN LATE DATE DEFAULT CURRENT_DATE,
+STATE VARCHAR DEFAULT 'RETURNED' 
+);
+INSERT INTO RETURN_BOOKS(ISBN,ID_SHOPPING_CART) VALUES(9788423355235,1);
+
+----------------------------------------------VISTAS-----------------------------------------------
+CREATE VIEW RECENT_LOANS AS
+SELECT TITLE_BOOK AS "BOOK", sc.TOTAL_AMOUNT AS "Total", sc.RETURN_DATE AS "DATE", sc.PAYMENTH_METOD, sc.STATE
+FROM BOOK b
+inner join BOOK_SHOPPING_CART bsc on b.ISBN = bsc.ISBN
+inner join SHOPPING_CART sc on sc.ID_SHOPPING_CART = bsc.ID_BOOK_SHOPPING_CART
+where sc.STATE = "BORROWED" and sc.RETURN_DATE = DATE ('NOW');
+-------------------------------------------TRIGGER----------------------------------------------------
+CREATE TRIGGER update_inventory_after_insert_book_shopping_cart
+AFTER INSERT ON book_shopping_cart
+BEGIN
+    UPDATE Inventory
+    SET AVAILABLE_BOOKS = AVAILABLE_BOOKS - 1,
+        BORROWED_BOOKS = BORROWED_BOOKS + 1
+    WHERE ISBN = NEW.ISBN
+    AND AVAILABLE_BOOKS > 0;
+END;
+
+-- Crear el trigger para aumentar cantidad disponible en inventario
+CREATE TRIGGER update_inventory_after_insert_books_returned
+AFTER INSERT ON RETURN_BOOKS
+BEGIN
+    UPDATE Inventory
+    SET AVAILABLE_BOOKS = AVAILABLE_BOOKS + 1,
+        BORROWED_BOOKS = BORROWED_BOOKS - 1
+    WHERE ISBN = NEW.ISBN
+    AND AVAILABLE_BOOKS >= 0;
+END;
+-------------------------------------------------CONSULTAS---------------------------------------------------------------------
+
+SELECT * FROM REVIEW WHERE STARS > 3 ORDER BY STARS DESC;
+--Consulta para saber cuantos libros del mismo género existen en la base de datos.
+SELECT g.DESCRIPTION, COUNT(g.DESCRIPTION)
+FROM BOOK b inner join GENRE_BOOK gb on b.ISBN = gb.ISBN
+inner join GENRE g on g.ID_GENRE = gb.ID_GENRE
+GROUP BY g.DESCRIPTION ORDER BY g.DESCRIPTION ASC;
+
+
+--Consulta para obtener libros por nombre
+--Una donde podamos buscar por nombres que inicien con un texto específico
+--Otra consulta donde podamos buscar por libros cuyo nombre finalice con un texto específico
+
+SELECT b.DESCRIPTION_BOOK
+FROM BOOK b WHERE TITLE_BOOK LIKE 'L%';
+---CUANDO EL SIMBOLO DE PORCENTAJE % VA DESPÚES DE LA LETRA, NOMBRE COMIENZAN CON ESE LETRA-------
+
+SELECT b.DESCRIPTION_BOOK
+FROM BOOK b WHERE TITLE_BOOK LIKE '%L';
+-----CUANDO EL SIMBOLO DE PORCENTAJE % VA ANTES DE LA LETRA, NOMBRE TERMINA CON ESTA LETRA------- 
+
+--Consulta para saber los libros alquilados por un usuario (por email) el mes anterior
+
+
+SELECT b.TITLE_BOOK AS "BOOK"
+FROM BOOK b INNER JOIN BOOK_SHOPPING_CART bsc ON b.ISBN = bsc.ISBN
+INNER JOIN SHOPPING_CART sc ON bsc.ID_SHOPPING_CART = sc.ID_SHOPPING_CART
+INNER JOIN USER u ON u.ID_USER = sc.ID_USER
+WHERE u.EMAIL = 'kiaralcp26@gmail.com' AND 
+strftime('%Y-%m', sc.LOAN_DATE) = strftime('%Y-%m', 'now', '-1 month');
+
+
+
+--Consulta que nos permita saber el promedio de libros alquilados por día.
+
+SELECT AVG(bsc.ID_BOOK_SHOPPING_CART)
+FROM BOOK b INNER JOIN BOOK_SHOPPING_CART bsc on b.ISBN = bsc.ISBN
+inner join SHOPPING_CART sc on bsc.ID_SHOPPING_CART = sc.ID_SHOPPING_CART
+WHERE sc.LOAN_DATE = CURRENT_DATE
+group by sc.LOAN_DATE
+ORDER BY sc.LOAN_DATE ASC;
+
+--Consulta para saber cuál fue el libro más alquilado en el mes anterior
+SELECT BOOK.TITLE_BOOK
+FROM SHOPPING_CART
+JOIN BOOK ON SHOPPING_CART.ID_SHOPPING_CART = ISBN
+GROUP BY BOOK.TITLE_BOOK
+ORDER BY COUNT(*) DESC;
+
+--Consulta que nos permita saber cuáles libros no se encuentran en el inventario pero si en la tabla de libros
+SELECT Book.ISBN, Book.TITLE_BOOK
+FROM Book
+LEFT JOIN INVENTORY ON Book.ISBN = INVENTORY.ID_INVENTORY
+WHERE INVENTORY.ID_INVENTORY IS NULL; 
+-----------------------------------------------------INDEXACIÓN---------------------------------------------------------
+CREATE UNIQUE INDEX INDEX_UNIQUE
+ON BOOK (ISBN);
+-------------------------------------------ADMINISTARTOR--------------------------------------
+UPDATE SHOPPING_CART
+SET STATE = 1
+WHERE EXISTS(SELECT 1 FROM USER 
+JOIN SHOPPING_CART  ON SHOPPING_CART.STATE = USER.id_User_Type
+JOIN User_Type  ON User_Type.id_User_Type  = USER.id_User_Type
+WHERE USER.ID_USER = 3 AND User_Type.id_User_Type = 2 ) AND STATE = 3;
+
+
+UPDATE SHOPPING_CART 
+SET STATE = 1
+WHERE EXISTS(SELECT 1 FROM USER 
+JOIN SHOPPING_CART ON SHOPPING_CART.STATE = USER.id_User_Type 
+JOIN User_Type  ON User_Type.id_User_Type  = USER.id_User_Type 
+WHERE USER.ID_USER = 3 AND User_Type.id_User_Type = 2 ) AND ID_SHOPPING_CART = 3;
+
+
+-------------------------------------------------------------------------
+
+-- Habilitar o deshabilitar reseñas/comentarios (reviews/feedback) realizados a libros
+
+DELETE FROM REVIEW
+WHERE EXISTS(SELECT 1 FROM USER
+JOIN REVIEW ON REVIEW.ID_REVIEW  = USER.id_User_type
+JOIN User_Type ON User_Type.id_User_type  = USER.id_User_type 
+WHERE USER.ID_USER = 3 AND User_Type.id_User_type  = 2 ) AND REVIEW >= 'Bueno';
